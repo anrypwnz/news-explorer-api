@@ -60,3 +60,8 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => console.log('Connected to port:', PORT));
 
 // TODO api should work new.ru/api
+// location /api/ {
+//   proxy_pass http://localhost:3000;
+//   proxy_http_version 1.1;
+//   ...
+// }

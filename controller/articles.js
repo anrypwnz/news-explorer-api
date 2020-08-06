@@ -13,7 +13,6 @@ const createArtile = (req, res, next) => {
     title, content, publishedAt, source, url, urlToImage,
   } = req.body;
   Article.create({
-    // TODO hardcode
     keyword: 'test',
     title,
     image: urlToImage,
@@ -29,12 +28,11 @@ const createArtile = (req, res, next) => {
 
 const delArticle = async (req, res, next) => {
   try {
-    const article = await Article.findById(req.params.id);
+    const article = await Article.findById(req.params.id).select('+owner');
     if (article == null) {
       throw new NotFoundError('Статья не найдена');
     // eslint-disable-next-line eqeqeq
     } else if (req.user._id == article.owner) {
-    // TODO вообще нужна ли эта проверка, если статьи будут отображаться в лк данного пользователя
       article.remove().then((deleted) => {
         res.status(200).send({ deleted });
       });
