@@ -15,11 +15,11 @@ const articleSchema = mongoose.Schema({
   },
   date: {
     required: true,
-    type: mongoose.Schema.Types.String,
+    type: mongoose.Schema.Types.Date,
   },
   source: {
     required: true,
-    type: mongoose.Schema.Types.String,
+    type: mongoose.Schema.Types.Object,
   },
   link: {
     required: true,
@@ -42,12 +42,14 @@ const articleSchema = mongoose.Schema({
       },
       message: (props) => `${props.value} is not a valid link!`,
     },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-      select: false,
-    },
   },
+  owner: {
+    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    select: false,
+  },
+
 });
 
 module.exports = mongoose.model('article', articleSchema);

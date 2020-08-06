@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const NotFoundError = require('../errors/not-found-err');
 const ConflictErr = require('../errors/conflict-err');
 const BadRequestErr = require('../errors/bad-request-err');
 const UnathorizedErr = require('../errors/unathorized-err');
@@ -8,7 +7,7 @@ const UnathorizedErr = require('../errors/unathorized-err');
 const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user.js');
 
-module.exports.createUser = async (req, res, next) => {
+const createUser = async (req, res, next) => {
   const {
     email, password, name,
   } = req.body;
@@ -32,7 +31,7 @@ module.exports.createUser = async (req, res, next) => {
   });
 };
 
-module.exports.login = (req, res, next) => {
+const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
@@ -44,8 +43,15 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-// module.exports.getUser = async (req, res, next) => {
-//   try {
-//     const token = req.header
-//   }
-// }
+const getMe = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      const { email, name } = user;
+      res.send({ email, name });
+    })
+    .catch((err) => next(err));
+};
+
+module.exports = {
+  createUser, login, getMe,
+};
