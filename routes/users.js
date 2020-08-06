@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
-const validator = require('validator');
 
 const auth = require('../middlewares/auth');
 const { createUser, getMe, login } = require('../controller/users');

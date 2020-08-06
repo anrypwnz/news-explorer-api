@@ -1,18 +1,24 @@
 # news-explorer-api
 
+`84.201.134.251` - публичный IP
+
+[https://top-news.ml](https://top-news.ml) - Адрес портала
+
 ### Как обратиться к серверу:
 
-`POST https://ADRESS.RU/api/singup` - Регистрация (параметры: name, email, password).
+  - https://api.top-news.ml/route - Возможно обратиться к серверу с поддоменом api 
 
-`POST https://ADRESS.RU/api/singin` - Логин (параметры: email, password).
+`POST https://top-news.ml/singup` - Регистрация (параметры: name, email, password).
 
-`GET https://ADRESS.RU/api/users/me` - Получить свои данные (параметры: name, email).
+`POST https://top-news.ml/singin` - Логин (параметры: email, password).
 
-`GET https://ADRESS.RU/api/articles` - Получить сохранённые пользователем статьи.
+`GET https://top-news.ml/api/users/me` - Получить свои данные (параметры: name, email).
 
-`POST https://ADRESS.RU/articles` - Создать статью (параметры: keyword, title, text, date, source, link и image)
+`GET https://top-news.ml/api/articles` - Получить сохранённые пользователем статьи.
 
-`DELETE https://ADRESS.RU/articles/articleId` - Удалить статью по ID.
+`POST https://top-news.ml/articles` - Создать статью (параметры: keyword, title, text, date, source, link и image)
+
+`DELETE https://top-news.ml/articles/articleId` - Удалить статью по ID.
 
 ### Как развернуть проект
 `npm run start` - развернуть сервер
