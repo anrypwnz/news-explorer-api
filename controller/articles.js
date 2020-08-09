@@ -31,7 +31,7 @@ const delArticle = async (req, res, next) => {
     const article = await Article.findById(req.params.id).select('+owner');
     if (article == null) {
       throw new NotFoundError('Статья не найдена');
-    } else if (req.user._id == article.owner) {
+    } else if (req.user._id === article.owner.toString()) {
       article.remove().then((deleted) => {
         res.status(200).send({ deleted });
       });
