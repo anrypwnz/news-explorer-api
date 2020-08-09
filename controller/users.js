@@ -22,7 +22,7 @@ const createUser = async (req, res, next) => {
           .then((hash) => User.create({
             email, password: hash, name,
           }))
-          .then((user) => res.send({ 'message': `Пользователь ${user.name} с почтой ${user.email} успешно зарегистрирован.` }))
+          .then((user) => res.send({ message: `Пользователь ${user.name} с почтой ${user.email} успешно зарегистрирован.` }))
           .catch((err) => next(err));
       }
     } catch (err) {

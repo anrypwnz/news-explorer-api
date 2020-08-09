@@ -11,9 +11,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'no-console': 'off',
     'no-underscore-dangle': 'off',
-    'quote-props': 'off',
-    'linebreak-style': 'off',
+    'no-console': 'off',
+    eqeqeq: 'off',
   },
 };

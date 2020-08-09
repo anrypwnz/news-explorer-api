@@ -15,7 +15,7 @@ router.get('/articles', celebrate({
 
 router.delete('/articles/:id', celebrate({
   params: Joi.object().keys({
-    id: Joi.string().alphanum().length(24),
+    id: Joi.string().hex().length(24),
   }),
   headers: Joi.object().keys({
     authorization: Joi.string(),
@@ -27,16 +27,16 @@ router.delete('/articles/:id', celebrate({
 router.post('/articles', celebrate({
   body: Joi.object().keys({
     title: Joi.string().required(),
-    content: Joi.string().required(),
-    publishedAt: Joi.date().required(),
-    source: Joi.object().required(),
-    url: Joi.string().required().min(2).custom((value) => {
+    text: Joi.string().required(),
+    date: Joi.date().required(),
+    source: Joi.string().required(),
+    link: Joi.string().required().min(2).custom((value) => {
       if (!validator.isURL(value)) {
         throw new Error('incorrect URL');
       }
       return value;
     }),
-    urlToImage: Joi.string().required().min(2).custom((value) => {
+    image: Joi.string().required().min(2).custom((value) => {
       if (!validator.isURL(value)) {
         throw new Error('incorrect URL');
       }

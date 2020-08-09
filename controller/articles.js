@@ -10,16 +10,16 @@ const getArticles = (req, res, next) => {
 
 const createArtile = (req, res, next) => {
   const {
-    title, content, publishedAt, source, url, urlToImage,
+    keyword, title, text, date, source, image, link,
   } = req.body;
   Article.create({
-    keyword: 'test',
+    keyword,
     title,
-    image: urlToImage,
-    text: content,
-    date: publishedAt,
+    image,
+    text,
+    date,
     source,
-    link: url,
+    link,
     owner: req.user._id,
   })
     .then((article) => res.send({ article }))
@@ -31,7 +31,6 @@ const delArticle = async (req, res, next) => {
     const article = await Article.findById(req.params.id).select('+owner');
     if (article == null) {
       throw new NotFoundError('Статья не найдена');
-    // eslint-disable-next-line eqeqeq
     } else if (req.user._id == article.owner) {
       article.remove().then((deleted) => {
         res.status(200).send({ deleted });

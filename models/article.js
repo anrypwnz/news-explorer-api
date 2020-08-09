@@ -19,7 +19,7 @@ const articleSchema = mongoose.Schema({
   },
   source: {
     required: true,
-    type: mongoose.Schema.Types.Object,
+    type: mongoose.Schema.Types.String,
   },
   link: {
     required: true,

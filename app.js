@@ -5,15 +5,17 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 
 const app = express();
-app.use(helmet());
-// const users = require('./routes/users');
-// const articles = require('./routes/articles');
-const { users, articles } = require('./routes');
+
+const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/limiter');
+const NotFoundError = require('./errors/not-found-err');
 
 const { PORT = 3000 } = process.env;
+const { DB_CONN = 'mongodb://localhost:27017/news-explorer' } = process.env;
 
-mongoose.connect('mongodb://localhost:27017/news-explorer', {
+app.use(helmet());
+mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -29,9 +31,10 @@ mongoose.connection.on('error', (err) => {
 });
 
 app.use(requestLogger);
+app.use(limiter);
 
-app.use(users);
-app.use(articles);
+app.use(routes.articles);
+app.use(routes.users);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -39,9 +42,8 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.all('*', (req, res, next) => {
-  res.status(404).send({ 'message': 'Запрашиваемый ресурс не найден' });
-  next();
+app.all('*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 
 app.use(errorLogger);
@@ -59,9 +61,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => console.log('Connected to port:', PORT));
 
-// TODO api should work new.ru/api
-// location /api/ {
-//   proxy_pass http://localhost:3000;
-//   proxy_http_version 1.1;
-//   ...
-// }
+// TODO: add PORT, DB_CONN to .env on server
