@@ -26,6 +26,7 @@ router.delete('/articles/:id', celebrate({
 
 router.post('/articles', celebrate({
   body: Joi.object().keys({
+    keyword: Joi.string().required(),
     title: Joi.string().required(),
     text: Joi.string().required(),
     date: Joi.date().required(),

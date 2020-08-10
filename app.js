@@ -60,5 +60,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log('Connected to port:', PORT));
-
-// TODO: add PORT, DB_CONN to .env on server
