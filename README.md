@@ -8,9 +8,9 @@
 
   - https://api.top-news.ml/route - Возможно обратиться к серверу с поддоменом api 
 
-`POST https://top-news.ml/singup` - Регистрация (параметры: name, email, password).
+`POST https://top-news.ml/signup` - Регистрация (параметры: name, email, password).
 
-`POST https://top-news.ml/singin` - Логин (параметры: email, password).
+`POST https://top-news.ml/signin` - Логин (параметры: email, password).
 
 `GET https://top-news.ml/api/users/me` - Получить свои данные (параметры: name, email).
 
