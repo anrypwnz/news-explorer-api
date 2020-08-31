@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('cors');
 const { errors } = require('celebrate');
 
 const app = express();
@@ -14,6 +15,15 @@ const NotFoundError = require('./errors/not-found-err');
 const { PORT = 3000 } = process.env;
 const { DB_CONN = 'mongodb://localhost:27017/news-explorer' } = process.env;
 
+const corsOptions = {
+  origin: ['http://localhost:8080', 'http://84.201.134.251', 'https://84.201.134.251',
+    'https://top-news.ml', 'http://top-news.ml', 'https://www.top-news.ml',
+    'http://www.top-news.ml', 'https://api.top-news.ml', 'http://api.top-news.ml',
+    'https://www.api.top-news.ml', 'http://www.api.top-news.ml'],
+  credentials: true,
+  methods: 'GET, POST, DELETE',
+};
+
 app.use(helmet());
 mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
@@ -21,6 +31,8 @@ mongoose.connect(DB_CONN, {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
+
+app.use(cors(corsOptions));
 
 mongoose.connection.once('open', () => {
   console.log('Successful connection to DataBase');
