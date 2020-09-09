@@ -19,7 +19,8 @@ const corsOptions = {
   origin: ['http://localhost:8080', 'http://84.201.134.251', 'https://84.201.134.251',
     'https://top-news.ml', 'http://top-news.ml', 'https://www.top-news.ml',
     'http://www.top-news.ml', 'https://api.top-news.ml', 'http://api.top-news.ml',
-    'https://www.api.top-news.ml', 'http://www.api.top-news.ml', 'https://anrypwnz.github.io/news-explorer-frontend/'],
+    'https://www.api.top-news.ml', 'http://www.api.top-news.ml', 'https://anrypwnz.github.io/news-explorer-frontend/',
+    'http://anrypwnz.github.io/news-explorer-frontend/'],
   credentials: true,
   methods: 'GET, POST, DELETE',
 };
