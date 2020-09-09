@@ -15,24 +15,24 @@ const NotFoundError = require('./errors/not-found-err');
 const { PORT = 3000 } = process.env;
 const { DB_CONN = 'mongodb://localhost:27017/news-explorer' } = process.env;
 
-const whitelist = {
-  origin: ['http://localhost:8080', 'http://84.201.134.251', 'https://84.201.134.251',
-    'https://top-news.ml', 'http://top-news.ml', 'https://www.top-news.ml',
-    'http://www.top-news.ml', 'https://api.top-news.ml', 'http://api.top-news.ml',
-    'https://www.api.top-news.ml', 'http://www.api.top-news.ml', 'https://anrypwnz.github.io/', 'http://anrypwnz.github.io/'],
-  credentials: true,
-  methods: 'GET, POST, DELETE',
-};
-const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
-app.use(cors(corsOptions));
+// const whitelist = {
+//   origin: ['http://localhost:8080', 'http://84.201.134.251', 'https://84.201.134.251',
+//     'https://top-news.ml', 'http://top-news.ml', 'https://www.top-news.ml',
+//     'http://www.top-news.ml', 'https://api.top-news.ml', 'http://api.top-news.ml',
+//     'https://www.api.top-news.ml', 'http://www.api.top-news.ml', 'https://anrypwnz.github.io/', 'http://anrypwnz.github.io/'],
+//   credentials: true,
+//   methods: 'GET, POST, DELETE',
+// };
+// const corsOptions = {
+//   origin(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+// };
+// app.use(cors(corsOptions));
 
 app.use(helmet());
 mongoose.connect(DB_CONN, {
