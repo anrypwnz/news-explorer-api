@@ -32,6 +32,7 @@ const corsOptions = {
     }
   },
 };
+app.use(cors(corsOptions));
 
 app.use(helmet());
 mongoose.connect(DB_CONN, {
@@ -40,8 +41,6 @@ mongoose.connect(DB_CONN, {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
-
-app.use(cors(corsOptions));
 
 mongoose.connection.once('open', () => {
   console.log('Successful connection to DataBase');
