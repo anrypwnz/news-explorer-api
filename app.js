@@ -23,16 +23,8 @@ const whitelist = {
   credentials: true,
   methods: 'GET, POST, DELETE',
 };
-const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
-app.use(cors(corsOptions));
+
+app.use(cors(whitelist));
 
 app.use(helmet());
 mongoose.connect(DB_CONN, {
