@@ -3,7 +3,7 @@
 `84.201.165.237` - публичный IP
 
 
-[Фронтенд](https://anrypwnz.github.io/news-explorer-frontend/) 
+[Фронтенд тут](https://anrypwnz.github.io/news-explorer-frontend/) 
 
 [https://top-news.ml](https://top-news.ml) - Адрес портала
 
