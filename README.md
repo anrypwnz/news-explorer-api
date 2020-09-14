@@ -1,6 +1,9 @@
 # news-explorer-api
 
-`84.201.134.251` - публичный IP
+`84.201.165.237` - публичный IP
+
+
+[Фронтенд](https://anrypwnz.github.io/news-explorer-frontend/) 
 
 [https://top-news.ml](https://top-news.ml) - Адрес портала
 
@@ -8,17 +11,17 @@
 
   - https://api.top-news.ml/route - Возможно обратиться к серверу с поддоменом api 
 
-`POST https://top-news.ml/signup` - Регистрация (параметры: name, email, password).
+`POST /signup` - Регистрация (параметры: name, email, password).
 
-`POST https://top-news.ml/signin` - Логин (параметры: email, password).
+`POST /signin` - Логин (параметры: email, password).
 
-`GET https://top-news.ml/api/users/me` - Получить свои данные (параметры: name, email).
+`GET /users/me` - Получить свои данные (параметры: name, email).
 
-`GET https://top-news.ml/api/articles` - Получить сохранённые пользователем статьи.
+`GET /articles` - Получить сохранённые пользователем статьи.
 
-`POST https://top-news.ml/articles` - Создать статью (параметры: keyword, title, text, date, source, link и image)
+`POST /articles` - Создать статью (параметры: keyword, title, text, date, source, link и image)
 
-`DELETE https://top-news.ml/articles/articleId` - Удалить статью по ID.
+`DELETE /articles/articleId` - Удалить статью по ID.
 
 ### Как развернуть проект
 `npm run start` - развернуть сервер
@@ -26,7 +29,7 @@
 `npm run dev` - развернуть сервер с функцией hot reload
 
 ### Технологии которые используются на этом проекте:
-
+`REST API`
 `NodeJS`
 `ExpressJS`
 `MongoDB`
